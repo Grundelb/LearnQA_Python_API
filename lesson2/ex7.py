@@ -1,7 +1,7 @@
 import requests
 
 payload_list = [{"method": "GET"}, {"method": "POST"}, {"method": "PUT"}, {"method": "DELETE"}, {"method": "PATCH"},
-                {"method": "HEAD"}]
+                {"method": "HEAD"}, {}]
 url = "https://playground.learnqa.ru/ajax/api/compare_query_type"
 
 response_one = requests.post(url)
@@ -23,4 +23,8 @@ for data in payload_list:
     print(f"response = {response_four.text}; method PUT; params: {data}")
     response_four = requests.delete(url, data=data)
     print(f"response = {response_four.text}; method DELETE; params: {data}")
+    response_four = requests.patch(url, data=data)
+    print(f"response = {response_four.text}; method PATCH; params: {data}")
+    response_four = requests.head(url, params=data)
+    print(f"response = {response_four.text}; method HEAD; params: {data}")
     print()
